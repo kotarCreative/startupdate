@@ -1,0 +1,16 @@
+.tabs {
+  list-style: none;
+  padding: 0px;
+  margin: 10px 0px;
+  display: flex;
+
+  .tab-item {
+    border: solid thin $light-grey;
+    padding: 5px 80px;
+    margin-right: -1px;
+
+    &.active {
+      background: #F2F2F2;
+    }
+  }
+}

@@ -18,7 +18,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'subdivision_id' => rand(1, 13),
         'first_name' => $first_name = $faker->firstName,
         'last_name' => $last_name = $faker->lastName,
         'slug' => Str::slug(strtolower($first_name) . '-' . strtolower($last_name)),
@@ -31,10 +30,11 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Companies\Company::class, function (Faker\Generator $faker) {
     return [
-        'subdivision_id' => rand(1, 13),
         'company_progress_type_id' => rand(1, 6),
         'vertical_id' => rand(1, 35),
         'name' => $name = $faker->company,
+        'city' => $faker->city,
+        'country' => $faker->country,
         'slug' => Str::slug(strtolower($name)),
         'url' => $faker->url,
         'email' => $faker->unique()->safeEmail,

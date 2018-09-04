@@ -16,10 +16,11 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('image_id')->nullable();
-            $table->unsignedInteger('subdivision_id')->nullable();
             $table->unsignedInteger('company_progress_type_id')->nullable();
             $table->unsignedInteger('vertical_id')->nullable();
             $table->string('name');
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->string('slug');
             $table->string('url')->nullable();
             $table->string('email')->nullable();
@@ -30,10 +31,6 @@ class CreateCompaniesTable extends Migration
             $table->foreign('image_id')
                 ->references('id')
                 ->on('images');
-
-            $table->foreign('subdivision_id')
-                ->references('id')
-                ->on('subdivisions');
 
             $table->foreign('company_progress_type_id')
                 ->references('id')

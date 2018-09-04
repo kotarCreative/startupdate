@@ -1,0 +1,26 @@
+.input-notice {
+  font-size: 0.7em;
+  margin-top: 3px;
+  color: $light-grey;
+}
+
+.form-control {
+  &:focus {
+    border-color: $purple;
+    box-shadow: 0 0 0 0.2rem #fff;
+  }
+}
+
+.btn {
+  background: $purple;
+  color: #fff;
+  border-radius: 0px;
+  padding: 5px 30px;
+
+  &:focus,
+  &:hover,
+  &:active {
+    box-shadow: none;
+    background: darken($purple, 5%);
+  }
+}
