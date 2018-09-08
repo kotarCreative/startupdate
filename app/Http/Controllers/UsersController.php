@@ -10,6 +10,8 @@ use App\Http\Requests\Users\Update;
 
 /* Models */
 use App\Models\User;
+use App\Models\Companies\Progress\Type as ProgressType;
+use App\Models\Companies\Vertical;
 
 class UsersController extends Controller
 {
@@ -23,8 +25,10 @@ class UsersController extends Controller
     public function edit($slug)
     {
       $user = User::where('slug', $slug)->firstOrFail();
-
-      return view('users.edit')->with('user', $user);
+      $company = $user->companies()->first();
+      $verticals = Vertical::all();
+      $progress_types = ProgressType::all();
+      return view('users.edit', compact('user', 'company', 'progress_types', 'verticals'));
     }
 
     /**
