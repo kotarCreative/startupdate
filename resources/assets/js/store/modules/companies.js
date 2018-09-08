@@ -1,3 +1,7 @@
+import {
+    JSONToFormData
+} from '../helpers/formDataBuilder';
+
 // Namespaced
 const namespaced = true;
 
@@ -40,7 +44,11 @@ const actions = {
       root: true
     });
 
-    return axios.patch('/companies/' + state.active.slug, company)
+    var data = new FormData();
+    data.append('_method', 'PATCH');
+    JSONToFormData(data, company);
+
+    return axios.post('/companies/' + state.active.slug, data)
       .then(response => {
         dispatch('finishAjaxCall', {
           loader: loader,

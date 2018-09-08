@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+
+        'company-logos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/company-logos'),
+        ],
     ],
 
 ];

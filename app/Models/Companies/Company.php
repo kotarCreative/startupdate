@@ -45,4 +45,27 @@ class Company extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    /**
+     * One to many relationship on the images table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function image()
+    {
+      return $this->belongsTo('App\Models\Companies\Image');
+    }
+
+    /**
+     * Attach the companies current image to the model.
+     *
+     * @return void
+     */
+    public function attachImage()
+    {
+      $image = $this->image()->first();
+      if ($image) {
+        $this->image = '/' . env('COMPANY_IMAGE_DISK') . '/' . $image->filepath;
+      }
+    }
 }

@@ -2,7 +2,7 @@
   <div id="edit-company-section">
     <h2>Edit Company</h2>
     <div class="form-group">
-      <photo-uploader></photo-uploader>
+      <photo-uploader @photoUploaded="updateCompanyPhoto" :starting-image="company.image" @removePhoto="removePhoto"></photo-uploader>
     </div>
     <div class="form-group">
       <label for="name" class="required-field">Company Name</label>
@@ -119,7 +119,8 @@
         description: null,
         vertical_id: null,
         company_progress_type_id: null,
-        from_startup_school: 0
+        from_startup_school: 0,
+        image: null
       }
     }),
 
@@ -130,6 +131,14 @@
     },
 
     methods: {
+      removePhoto() {
+        this.form.image = null;
+      },
+
+      updateCompanyPhoto(file) {
+        this.form.image = file;
+      },
+
       save() {
         this.$store.dispatch('companies/update', this.form);
       }

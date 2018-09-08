@@ -51,6 +51,7 @@
               this.image = null;
               this.renderedImage = null;
               this.file = null;
+              this.$emit('removePhoto');
             },
 
             uploadPhotos(e) {
@@ -59,6 +60,7 @@
                     return;
                 }
                 this.file = files[0];
+                this.$emit('photoUploaded', this.file);
             }
         },
     }

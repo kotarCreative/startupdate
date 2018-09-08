@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+
 /* Requests */
 use Illuminate\Http\Request;
 use App\Http\Requests\Companies\Update;
 
 /* Models */
 use App\Models\Companies\Company;
+use App\Models\Companies\Image;
 
 class CompaniesController extends Controller
 {
@@ -21,14 +24,27 @@ class CompaniesController extends Controller
      */
     public function update($slug, Update $request)
     {
-      $company = Company::where('slug', $slug)->firstOrFail();
+      return DB::transaction(function() use ($slug, $request) {
+        $company = Company::where('slug', $slug)->firstOrFail();
 
-      $company->fill($request->all());
-      $company->save();
+        $company->fill($request->all());
 
-      return response()->json([
-        'message' => 'Company Updated',
-        'company' => $company
-      ]);
+        if ($request->hasFile('image')) {
+          $image = new Image();
+          $image->saveWithFile($request->image);
+          $image->save();
+          $company->image_id = $image->id;
+        } elseif (!$request->has('image')) {
+          $image = $company->image;
+          $company->image_id = null;
+          $company->save();
+          $image->delete();
+        }
+
+        return response()->json([
+          'message' => 'Company Updated',
+          'company' => $company
+        ]);
+      });
     }
 }
