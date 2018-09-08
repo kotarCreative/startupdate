@@ -2,7 +2,7 @@
   <div id="users-profile">
     <ul class="tabs">
       <li class="tab-item" :class="{active: selectedSection === 'profile'}" @click="toggleSection('profile')">
-        Login Info
+        Profile Info
       </li>
       <li class="tab-item" :class="{active: selectedSection === 'company'}" @click="toggleSection('company')">
         Company
@@ -16,9 +16,9 @@
 </template>
 
 <script>
-  import CompanySection from './sections/Company';
-  import ProfileSection from './sections/Profile';
-  import ProgressSection from './sections/Progress';
+  import CompanySection from './sections/company';
+  import ProfileSection from './sections/profile';
+  import ProgressSection from './sections/progress';
 
   export default {
     name: 'user-profile',
@@ -51,4 +51,5 @@
       }
     }
   }
+
 </script>

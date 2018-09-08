@@ -16,4 +16,5 @@ Auth::routes();
 
 Route::get('/feedback', 'HomeController@feedback')->name('feedback');
 
-Route::get('/users/{slug}/edit', 'UsersController@edit')->name('users.edit');
+Route::get('/profile/{slug}/edit', 'UsersController@edit')->name('users.edit');
+Route::patch('/profile/{slug}', 'UsersController@update')->name('users.update');

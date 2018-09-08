@@ -22,6 +22,9 @@
 </head>
 <body>
     <div id="app">
+        @if (!Auth::guest())
+          <active-user :user="{{ Auth::user() }}"></active-user>
+        @endif
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

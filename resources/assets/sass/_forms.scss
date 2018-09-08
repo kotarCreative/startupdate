@@ -5,9 +5,15 @@
 }
 
 .form-control {
+  border-radius: 0px;
+
   &:focus {
     border-color: $purple;
     box-shadow: 0 0 0 0.2rem #fff;
+  }
+
+  .sm {
+    max-width: 300px;
   }
 }
 
@@ -23,4 +29,19 @@
     box-shadow: none;
     background: darken($purple, 5%);
   }
+}
+
+.has-error {
+  border-color: $red;
+}
+
+.required-field:after {
+  content: '*';
+  color: $red;
+  vertical-align: top;
+}
+
+.form-errors {
+  margin: 10px 0px;
+  color: $red;
 }

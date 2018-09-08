@@ -88,15 +88,15 @@ const mutations = {
     setErrors(state, { model, errors }) {
         if (model) {
             if (state.errors[model]) {
-                Object.assign(state.errors[model], errors);
+                Object.assign(state.errors[model], errors.errors);
             } else {
-                state.errors[model] = errors;
+                state.errors[model] = errors.errors;
             }
         } else {
             if (errors === 'reset') {
                 state.errors = {};
             } else {
-                state.errors = errors;
+                state.errors = errors.errors;
             }
         }
     },
