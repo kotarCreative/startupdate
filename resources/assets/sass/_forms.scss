@@ -6,14 +6,19 @@
 
 .form-control {
   border-radius: 0px;
+  appearance: none;
 
   &:focus {
     border-color: $purple;
     box-shadow: 0 0 0 0.2rem #fff;
   }
 
-  .sm {
+  &.sm {
     max-width: 300px;
+  }
+
+  &.md {
+    max-width: 500px;
   }
 }
 
