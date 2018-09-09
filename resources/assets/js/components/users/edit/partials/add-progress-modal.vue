@@ -1,6 +1,6 @@
 <template>
-  <vue-modal name="edit-progress" size="lg" :on-close="closeFn">
-    <h2 slot="header">Edit Progress Update</h2>
+  <vue-modal name="add-progress" size="lg" :on-close="closeFn">
+    <h2 slot="header">Add Progress Update</h2>
     <div class="form-group">
       <div class="row">
         <div class="col-md-4">
@@ -50,7 +50,7 @@
   import ErrorMixins from '../../../../mixins/error-mixins';
 
   export default {
-    name: 'edit-progress-modal',
+    name: 'add-progress-modal',
 
     mixins: [ErrorMixins],
 
@@ -69,15 +69,11 @@
 
     computed: {
       loading() {
-        return this.$store.getters.hasLoading('update-progress-update');
+        return this.$store.getters.hasLoading('create-progress-update');
       },
 
       metrics() {
         return this.$store.getters['progressUpdates/metrics'];
-      },
-
-      progressUpdate() {
-        return this.$store.getters['progressUpdates/active'];
       }
     },
 
@@ -88,18 +84,10 @@
       },
 
       save() {
-        this.$store.dispatch('progressUpdates/update', this.form)
+        this.$store.dispatch('progressUpdates/create', this.form)
           .then(r => {
-            this.$modals.hide('edit-progress');
+            this.$modals.hide('add-progress');
           });
-      }
-    },
-
-    watch: {
-      progressUpdate(val) {
-        Object.keys(this.form).forEach(k => {
-          this.form[k] = val[k];
-        });
       }
     }
   }

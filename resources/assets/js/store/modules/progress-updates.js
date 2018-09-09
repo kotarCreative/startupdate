@@ -34,45 +34,99 @@ const getters = {
 
 // Actions
 const actions = {
+  create({
+    commit,
+    dispatch,
+    rootGetters
+  }, update) {
+    var loader = 'add-progress-update';
+    commit('addLoading', loader, {
+      root: true
+    });
+
+    return new Promise((resultFn, errorFn) => {
+      axios.post('/companies/' + rootGetters['companies/active'].slug + '/progress', update)
+        .then(response => {
+          commit('add', response.data.progress_update);
+          if (resultFn) {
+            resultFn(response);
+          }
+          dispatch('finishAjaxCall', {
+            loader: loader,
+            response: response,
+            model: ERROR_MODEL
+          }, {
+            root: true
+          });
+        })
+        .catch(errors => {
+          if(errorFn) {
+            errorFn(errors);
+          }
+          dispatch('finishAjaxCall', {
+            loader: loader,
+            response: errors,
+            model: ERROR_MODEL
+          }, {
+            root: true
+          });
+        });
+    });
+  },
+
   update({
     state,
     commit,
-    dispatch
+    dispatch,
+    rootGetters
   }, update) {
     var loader = 'update-progress-update';
     commit('addLoading', loader, {
       root: true
     });
 
-    var data = new FormData();
-    data.append('_method', 'PATCH');
-    JSONToFormData(data, update);
+    return new Promise((resultFn, errorFn) => {
+      axios.patch('/companies/' + rootGetters['companies/active'].slug + '/progress/' + update.id, update)
+        .then(response => {
+          commit('update', response.data.progress_update);
 
-    return axios.post('/companies/' + update.company_id + '/progress/' + update.id, data)
-      .then(response => {
-        commit('update', response.data.progress_update);
-        dispatch('finishAjaxCall', {
-          loader: loader,
-          response: response,
-          model: ERROR_MODEL
-        }, {
-          root: true
+          if (resultFn) {
+            resultFn(response);
+          }
+          dispatch('finishAjaxCall', {
+            loader: loader,
+            response: response,
+            model: ERROR_MODEL
+          }, {
+            root: true
+          });
+        })
+        .catch(errors => {
+          if(errorFn) {
+            errorFn(errors);
+          }
+          dispatch('finishAjaxCall', {
+            loader: loader,
+            response: errors,
+            model: ERROR_MODEL
+          }, {
+            root: true
+          });
         });
-      })
-      .catch(errors => {
-        dispatch('finishAjaxCall', {
-          loader: loader,
-          response: errors,
-          model: ERROR_MODEL
-        }, {
-          root: true
-        });
-      });
+    });
   }
 }
 
 // Mutations
 const mutations = {
+  add(state, update) {
+    state.all.push(update);
+  },
+
+  resetActive(state) {
+    state.active = UPDATE;
+  },
+
   setActive(state, update) {
     state.active = update;
   },

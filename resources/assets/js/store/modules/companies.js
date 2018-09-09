@@ -8,6 +8,7 @@ const namespaced = true;
 const ERROR_MODEL = 'companies';
 
 const COMPANY = {
+  id: null,
   vertical_id: null,
   progress_type_id: null,
   slug: null,
@@ -32,6 +33,7 @@ const state = {
 
 // Getters
 const getters = {
+  active: state => state.active,
   progressTypes: state => state.progressTypes,
   verticals: state => state.verticals
 }

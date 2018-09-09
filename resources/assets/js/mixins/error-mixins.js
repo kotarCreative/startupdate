@@ -17,6 +17,10 @@ export default {
             }
         },
 
+        clearErrors() {
+          delete this.$store.commit('setErrors', { model: this.errorModel, errors: {} });
+        },
+
         hasError(error) {
             return this.errors[this.errorModel] && this.errors[this.errorModel][error];
         },

@@ -23,4 +23,5 @@ Route::group(['middleware' => 'auth'], function() {
   Route::patch('/companies/{slug}', 'CompaniesController@update')->name('companies.update');
 
   Route::patch('companies/{company}/progress/{progress_update}', 'ProgressUpdatesController@update')->name('progress.update');
+  Route::post('companies/{company}/progress', 'ProgressUpdatesController@create')->name('progress.create');
 });
