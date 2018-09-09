@@ -34,6 +34,7 @@ class CompaniesController extends Controller
           $image->saveWithFile($request->image);
           $image->save();
           $company->image_id = $image->id;
+          $company->save();
         } elseif (!$request->has('image')) {
           $image = $company->image;
           $company->image_id = null;

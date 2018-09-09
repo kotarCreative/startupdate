@@ -11,7 +11,7 @@
         Progress
       </li>
     </ul>
-    <component :is="sections[selectedSection]" :profile="profile" :company="company" :progress-types="progressTypes" :verticals="verticals"></component>
+    <component :is="sections[selectedSection]" :profile="profile" :company="company" :progress-types="progressTypes" :verticals="verticals" :progressUpdates="company.progress_updates"></component>
   </div>
 </template>
 

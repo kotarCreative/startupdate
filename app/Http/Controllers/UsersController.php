@@ -27,6 +27,12 @@ class UsersController extends Controller
       $user = User::where('slug', $slug)->firstOrFail();
       $company = $user->companies()->first();
       $company->attachImage();
+      $company->progressUpdates;
+
+      foreach ($company->progressUpdates as $update) {
+        $update->attachMetric();
+      }
+
       $verticals = Vertical::all();
       $progress_types = ProgressType::all();
       return view('users.edit', compact('user', 'company', 'progress_types', 'verticals'));

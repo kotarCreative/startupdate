@@ -12,4 +12,13 @@ class Metric extends Model
      * @var $table
      */
     protected $table = 'progress_metrics';
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id'
+    ];
 }

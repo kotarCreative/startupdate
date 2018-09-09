@@ -1,0 +1,33 @@
+.table {
+  thead {
+    tr {
+      th {
+        font-family: $font-family-sans-serif;
+        font-weight: 300;
+        border: none;
+        border-bottom: solid thin $light-grey;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        font-family: $font-family-sans-serif;
+        font-weight: 300;
+        border-bottom: solid thin $light-grey;
+
+        .inner-border {
+          padding: 5px;
+          border-right: solid thin $light-grey;
+        }
+      }
+
+      td:last-child {
+        .inner-border {
+          border: none;
+        }
+      }
+    }
+  }
+}

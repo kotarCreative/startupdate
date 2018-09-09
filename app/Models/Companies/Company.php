@@ -68,4 +68,14 @@ class Company extends Model
         $this->image = '/' . env('COMPANY_IMAGE_DISK') . '/' . $image->filepath;
       }
     }
+
+    /**
+     * One to many relationship on the progress_updates table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function progressUpdates()
+    {
+      return $this->hasMany('App\Models\Companies\Progress\Update');
+    }
 }
