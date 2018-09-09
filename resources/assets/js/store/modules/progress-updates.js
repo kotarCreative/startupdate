@@ -5,35 +5,28 @@ import {
 // Namespaced
 const namespaced = true;
 
-const ERROR_MODEL = 'companies';
+const ERROR_MODEL = 'progressUpdates';
 
-const COMPANY = {
-  vertical_id: null,
-  progress_type_id: null,
-  slug: null,
-  name: null,
-  email: null,
-  url: null,
-  city: null,
-  country: null,
+const UPDATE = {
+  company_id: null,
+  progress_metric_id: null,
+  other_metric: null,
+  growth: null,
+  value: null,
   description: null,
-  from_startup_school: null,
   created_at: null,
   updated_at: null
 }
 
 // State
 const state = {
-  active: COMPANY,
+  active: UPDATE,
   metrics: [],
-  progressTypes: [],
-  verticals: []
 }
 
 // Getters
 const getters = {
-  progressTypes: state => state.progressTypes,
-  verticals: state => state.verticals
+  metrics: state => state.metrics
 }
 
 // Actions
@@ -42,17 +35,17 @@ const actions = {
     state,
     commit,
     dispatch
-  }, company) {
-    var loader = 'update-company';
+  }, update) {
+    var loader = 'update-progress-update';
     commit('addLoading', loader, {
       root: true
     });
 
     var data = new FormData();
     data.append('_method', 'PATCH');
-    JSONToFormData(data, company);
+    JSONToFormData(data, update);
 
-    return axios.post('/companies/' + state.active.slug, data)
+    return axios.post('/companies/' + state.active.company_id + '/progress/update', data)
       .then(response => {
         dispatch('finishAjaxCall', {
           loader: loader,
@@ -76,20 +69,12 @@ const actions = {
 
 // Mutations
 const mutations = {
-  setActive(state, company) {
-    state.active = company;
+  setActive(state, update) {
+    state.active = update;
   },
 
   setMetrics(state, metrics) {
     state.metrics = metrics;
-  },
-
-  setProgressTypes(state, types) {
-    state.progressTypes = types;
-  },
-
-  setVerticals(state, verticals) {
-    state.verticals = verticals;
   }
 }
 

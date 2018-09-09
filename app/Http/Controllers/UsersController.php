@@ -10,6 +10,7 @@ use App\Http\Requests\Users\Update;
 
 /* Models */
 use App\Models\User;
+use App\Models\Companies\Progress\Metric;
 use App\Models\Companies\Progress\Type as ProgressType;
 use App\Models\Companies\Vertical;
 
@@ -33,9 +34,11 @@ class UsersController extends Controller
         $update->attachMetric();
       }
 
-      $verticals = Vertical::all();
+      // Additional Metrics
+      $metrics = Metric::all();
       $progress_types = ProgressType::all();
-      return view('users.edit', compact('user', 'company', 'progress_types', 'verticals'));
+      $verticals = Vertical::all();
+      return view('users.edit', compact('user', 'company', 'metrics', 'progress_types', 'verticals'));
     }
 
     /**

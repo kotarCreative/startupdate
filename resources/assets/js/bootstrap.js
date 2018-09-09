@@ -1,17 +1,9 @@
 window.Vue = require('vue');
 
-/**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+/* Vue Modal */
+import VueModal from "vue2-modal";
 
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-    require('bootstrap/js/src/util.js');
-} catch (e) {}
+Vue.use(VueModal);
 
 window.axios = require('axios');
 

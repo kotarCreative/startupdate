@@ -11,7 +11,7 @@
         Progress
       </li>
     </ul>
-    <component :is="sections[selectedSection]" :profile="profile" :company="company" :progress-types="progressTypes" :verticals="verticals" :progressUpdates="company.progress_updates"></component>
+    <component :is="sections[selectedSection]" :profile="profile" :company="company" :progressUpdates="company.progress_updates"></component>
   </div>
 </template>
 
@@ -34,6 +34,10 @@
         type: Object
       },
 
+      metrics: {
+        type: Array
+      },
+
       profile: {
         type: Object
       },
@@ -49,6 +53,9 @@
 
     mounted() {
       this.$store.commit('companies/setActive', this.company);
+      this.$store.commit('progressUpdates/setMetrics', this.metrics);
+      this.$store.commit('companies/setProgressTypes', this.progressTypes);
+      this.$store.commit('companies/setVerticals', this.verticals);
     },
 
     data: _ => ({

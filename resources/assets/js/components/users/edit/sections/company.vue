@@ -91,14 +91,6 @@
     props: {
       company: {
         type: Object
-      },
-
-      progressTypes: {
-        type: Array
-      },
-
-      verticals: {
-        type: Array
       }
     },
 
@@ -127,6 +119,14 @@
     computed: {
       loading() {
         return this.$store.getters.hasLoading('update-company');
+      },
+
+      progressTypes() {
+        return this.$store.getters['companies/progressTypes'];
+      },
+
+      verticals() {
+        return this.$store.getters['companies/verticals'];
       }
     },
 
