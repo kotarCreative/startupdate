@@ -33,6 +33,7 @@
     </div>
     <div class="form-group">
       <button class="btn primary" @click="save" :disabled="loading">Update</button>
+      <loader v-if="loading"></loader>
     </div>
   </div>
 </template>

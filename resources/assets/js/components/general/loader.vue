@@ -10,6 +10,8 @@
         width:          20px
         height:         20px
         animation:      spin 2s linear infinite
+        display:        inline-flex
+        margin-left:    10px
 
     @keyframes spin
         0%

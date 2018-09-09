@@ -20,20 +20,20 @@
       ProgressUpdate
     },
 
-    props: {
-      progressUpdates: {
-        type: Array
-      }
-    },
-
     data: _ => ({
       activeUpdate: null
     }),
 
+    computed: {
+      progressUpdates() {
+        return this.$store.getters['progressUpdates/all'];
+      }
+    },
+
     methods: {
       editUpdate(update) {
         this.$modals.show('edit-progress');
-        this.activeUpdate = update;
+        this.$store.commit('progressUpdates/setActive', update);
       }
     }
   }

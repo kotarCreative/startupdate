@@ -21,11 +21,14 @@ const UPDATE = {
 // State
 const state = {
   active: UPDATE,
+  all: [],
   metrics: [],
 }
 
 // Getters
 const getters = {
+  active: state => state.active,
+  all: state => state.all,
   metrics: state => state.metrics
 }
 
@@ -45,8 +48,9 @@ const actions = {
     data.append('_method', 'PATCH');
     JSONToFormData(data, update);
 
-    return axios.post('/companies/' + state.active.company_id + '/progress/update', data)
+    return axios.post('/companies/' + update.company_id + '/progress/' + update.id, data)
       .then(response => {
+        commit('update', response.data.progress_update);
         dispatch('finishAjaxCall', {
           loader: loader,
           response: response,
@@ -73,8 +77,22 @@ const mutations = {
     state.active = update;
   },
 
+  setAll(state, updates) {
+    state.all = updates;
+  },
+
   setMetrics(state, metrics) {
     state.metrics = metrics;
+  },
+
+  update(state, update) {
+    let existing = state.all.find(u => u.id === update.id);
+
+    if (existing) {
+      Object.keys(existing).forEach(k => {
+        existing[k] = update[k];
+      });
+    }
   }
 }
 

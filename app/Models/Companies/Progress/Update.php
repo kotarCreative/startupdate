@@ -14,6 +14,19 @@ class Update extends Model
     protected $table = 'progress_updates';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'progress_metric_id',
+        'growth',
+        'other_metric',
+        'value',
+        'description'
+    ];
+
+    /**
      * Attach the updates metric to the model.
      *
      * @return void

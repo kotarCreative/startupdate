@@ -15,7 +15,7 @@
           </select>
         </div>
         <div class="col-md-4">
-          <label for="value" class="required-field">City</label>
+          <label for="value" class="required-field">Value</label>
           <input type="text" class="form-control" :class="{ 'has-error': hasError('value')}" name="value" v-model="form.value" :disabled="loading">
           <div class="input-notice">Total added last week.</div>
         </div>
@@ -38,6 +38,7 @@
       <button class="btn" @click="save">
         Submit
       </button>
+      <loader v-if="loading"></loader>
     </div>
   </vue-modal>
 </template>
@@ -50,14 +51,11 @@
 
     mixins: [ErrorMixins],
 
-    props: {
-      progressUpdate: {
-        type: Object
-      }
-    },
-
     data: _ => ({
+      errorModel: 'progressUpdates',
       form: {
+        id: null,
+        company_id: null,
         description: null,
         growth: null,
         progress_metric_id: null,
@@ -68,17 +66,24 @@
 
     computed: {
       loading() {
-        return false;
+        return this.$store.getters.hasLoading('update-progress-update');
       },
 
       metrics() {
         return this.$store.getters['progressUpdates/metrics'];
+      },
+
+      progressUpdate() {
+        return this.$store.getters['progressUpdates/active'];
       }
     },
 
     methods: {
       save() {
-        this.$store.dispatch('progressUpdates/update', this.form);
+        this.$store.dispatch('progressUpdates/update', this.form)
+          .then(r => {
+            this.$modals.hide('edit-progress');
+          });
       }
     },
 
