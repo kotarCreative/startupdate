@@ -66,6 +66,23 @@ class CompaniesController extends Controller
     }
 
     /**
+     * Show a companies profile.
+     *
+     * @param string $slug
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $company = Company::where('slug', $slug)->firstOrFail();
+        $company->vertical;
+        $company->progressType;
+        $company->attachImage();
+
+        return view('companies/show', compact('company'));
+    }
+
+    /**
      * Update a companies information.
      *
      * @param string $slug

@@ -16,6 +16,7 @@ Auth::routes();
 
 Route::get('/feedback', 'HomeController@feedback')->name('feedback');
 Route::get('/companies', 'CompaniesController@index');
+Route::get('/companies/{slug}', 'CompaniesController@show');
 
 Route::group(['middleware' => 'auth'], function() {
   Route::get('/profile/{slug}/edit', 'UsersController@edit')->name('users.edit');
