@@ -26,20 +26,73 @@ const COMPANY = {
 // State
 const state = {
   active: COMPANY,
+  all: [],
   metrics: [],
+  nextPage: null,
   progressTypes: [],
+  search: {
+    filter: null,
+    progress: null,
+    term: null,
+    type: 'company',
+    vertical: null
+  },
   verticals: []
 }
 
 // Getters
 const getters = {
   active: state => state.active,
+  all: state => state.all,
   progressTypes: state => state.progressTypes,
+  search: state => state.search,
   verticals: state => state.verticals
 }
 
 // Actions
 const actions = {
+  search({
+    commit,
+    dispatch,
+    state
+  }, next = false) {
+    var loader = 'search-companies';
+    commit('addLoading', loader, {
+      root: true
+    });
+
+    var url = '/companies';
+
+    if (next) {
+      url = state.nextPage;
+    }
+    return axios.get(url, { params: state.search })
+      .then(response => {
+        if (next) {
+          commit('add', response.data.data);
+        } else {
+          commit('setAll', response.data.data);
+        }
+        commit('setPagination', response.data);
+        dispatch('finishAjaxCall', {
+          loader: loader,
+          response: response,
+          model: ERROR_MODEL
+        }, {
+          root: true
+        });
+      })
+      .catch(errors => {
+        dispatch('finishAjaxCall', {
+          loader: loader,
+          response: errors,
+          model: ERROR_MODEL
+        }, {
+          root: true
+        });
+      });
+  },
+
   update({
     state,
     commit,
@@ -78,12 +131,26 @@ const actions = {
 
 // Mutations
 const mutations = {
+  add(state, companies) {
+    companies.forEach(c => {
+      state.all.push(c);
+    });
+  },
+
   setActive(state, company) {
     state.active = company;
   },
 
+  setAll(state, companies) {
+      state.all = companies;
+  },
+
   setMetrics(state, metrics) {
     state.metrics = metrics;
+  },
+
+  setPagination(state, response) {
+    state.nextPage = response.next_page_url;
   },
 
   setProgressTypes(state, types) {

@@ -78,4 +78,24 @@ class Company extends Model
     {
       return $this->hasMany('App\Models\Companies\Progress\Update');
     }
+
+    /**
+     * One to many relationship on the verticals table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function vertical()
+    {
+      return $this->belongsTo('App\Models\Companies\Vertical');
+    }
+
+    /**
+     * One to many relationship on the company_progress_types table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function progressType()
+    {
+      return $this->belongsTo('App\Models\Companies\Progress\Type', 'company_progress_type_id');
+    }
 }

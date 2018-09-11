@@ -1,3 +1,7 @@
+// Companies
+const companies = './components/companies/';
+Vue.component('companies-table', require(companies + 'all/table.vue'));
+
 // General
 const general = './components/general/';
 Vue.component('active-user', require(general + 'active-user.vue'));
@@ -11,8 +15,12 @@ Vue.component('edit-user-profile', require(users + 'edit/index.vue'));
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { faLink } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faEdit);
+library.add(faUserCircle);
+library.add(faLink);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

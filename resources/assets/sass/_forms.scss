@@ -40,6 +40,12 @@
     padding: 0px 10px;
     color: $purple;
   }
+
+  &.icon {
+    background: none;
+    padding: 5px;
+    color: $purple;
+  }
 }
 
 .has-error {

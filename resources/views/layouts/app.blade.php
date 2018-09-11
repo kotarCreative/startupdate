@@ -55,7 +55,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ '/profile/' . Auth::user()->slug }}">{{ __('Profile') }}</a>
+                                <a class="nav-link" href="/profile/{{  Auth::user()->slug }}/edit">{{ __('Profile') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('logout') }}"
