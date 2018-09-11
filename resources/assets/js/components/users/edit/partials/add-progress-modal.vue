@@ -83,9 +83,16 @@
         this.$store.commit('progressUpdates/resetActive');
       },
 
+      resetForm() {
+        Object.keys(this.form).forEach(k => {
+            this.form[k] = null;
+        });
+      },
+
       save() {
         this.$store.dispatch('progressUpdates/create', this.form)
           .then(r => {
+            this.resetForm();
             this.$modals.hide('add-progress');
           });
       }
