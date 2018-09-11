@@ -41,7 +41,7 @@ class Image extends Model
         $path = $year.'/'.$month.'/'.$day.'/'.$filename;
 
         $img = InterventionImage::make($prefix . $path)
-            ->fit(1920, 1080)
+            ->fit(1080, 1080)
             ->orientate()
             ->save();
 

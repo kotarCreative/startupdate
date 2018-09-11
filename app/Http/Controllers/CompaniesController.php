@@ -59,6 +59,7 @@ class CompaniesController extends Controller
         foreach ($companies as $company) {
             $company->vertical;
             $company->progressType;
+            $company->attachImage();
         }
 
         return $companies;

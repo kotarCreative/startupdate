@@ -4,7 +4,7 @@
             <div class="inner-border">
                 <div class="company__main-info">
                     <div class="company__logo">
-                        <img v-if="company.logo_path" :src="company.logo_path" />
+                        <img v-if="company.image" :src="company.image" width="100%" />
                         <div v-else class="company__default-logo"></div>
                     </div>
                     <div class="company__name">
