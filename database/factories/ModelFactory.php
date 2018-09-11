@@ -38,7 +38,7 @@ $factory->define(App\Models\Companies\Company::class, function (Faker\Generator 
         'slug' => Str::slug(strtolower($name)),
         'url' => $faker->url,
         'email' => $faker->unique()->safeEmail,
-        'description' => $faker->paragraph(3),
+        'description' => $faker->text(50),
         'from_startup_school' => rand(0, 1)
     ];
 });

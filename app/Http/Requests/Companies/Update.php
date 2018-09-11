@@ -27,7 +27,7 @@ class Update extends FormRequest
             'name' => 'required',
             'city' => 'required',
             'country' => 'required',
-            'description' => 'required',
+            'description' => 'required|max:50',
             'vertical_id' => 'required',
             'company_progress_type_id' => 'required',
             'from_startup_school' => 'required'

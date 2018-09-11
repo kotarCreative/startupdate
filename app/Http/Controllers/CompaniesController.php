@@ -87,9 +87,11 @@ class CompaniesController extends Controller
           $company->save();
         } elseif (!$request->has('image')) {
           $image = $company->image;
-          $company->image_id = null;
-          $company->save();
-          $image->delete();
+          if ($image) {
+              $company->image_id = null;
+              $company->save();
+              $image->delete();
+          }
         }
 
         return response()->json([

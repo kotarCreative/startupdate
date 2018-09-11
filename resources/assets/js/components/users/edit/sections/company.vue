@@ -31,7 +31,7 @@
     <div class="form-group">
       <label for="description" class="required-field">Describe your company in a sentence or two.</label>
       <input type="text" class="form-control md" :class="{ 'has-error': hasError('description')}" name="description" v-model="form.description" :disabled="loading">
-      <div class="input-notice">Keep it short. e.g. Platform for peer-to-peer car rentals.</div>
+      <div class="input-notice">Keep it short. e.g. Platform for peer-to-peer car rentals. (max. 50 characters)</div>
     </div>
     <div class="form-group">
       <label for="vertical" class="required-field">Vertical</label>
