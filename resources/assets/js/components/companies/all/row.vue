@@ -38,7 +38,7 @@
                 <a class="btn icon" :href="'/companies/' + company.slug">
                     <font-awesome-icon :icon="['far', 'user-circle']"></font-awesome-icon>
                 </a>
-                <a class="btn icon" :href="company.url" target="_blank">
+                <a v-if="company.url" class="btn icon" :href="company.url" target="_blank">
                     <font-awesome-icon :icon="['fas', 'link']"></font-awesome-icon>
                 </a>
                 <button v-if="company.is_contactable" class="btn icon" @click="contact">

@@ -31,7 +31,7 @@
 
     props: {
       company: {
-        type: Object
+        type: [Object, Array]
       },
 
       metrics: {

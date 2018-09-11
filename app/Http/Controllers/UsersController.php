@@ -10,6 +10,7 @@ use App\Http\Requests\Users\Update;
 
 /* Models */
 use App\Models\User;
+use App\Models\Companies\Company;
 use App\Models\Companies\Progress\Metric;
 use App\Models\Companies\Progress\Type as ProgressType;
 use App\Models\Companies\Vertical;
@@ -27,11 +28,16 @@ class UsersController extends Controller
     {
       $user = User::where('slug', $slug)->firstOrFail();
       $company = $user->companies()->first();
-      $company->attachImage();
-      $company->progressUpdates;
 
-      foreach ($company->progressUpdates as $update) {
-        $update->attachMetric();
+      if ($company) {
+          $company->attachImage();
+          $company->progressUpdates;
+
+          foreach ($company->progressUpdates as $update) {
+            $update->attachMetric();
+          }
+      } else {
+          $company = new Company();
       }
 
       // Additional Metrics

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 
 /* Requests */
 use Illuminate\Http\Request;
@@ -15,6 +16,35 @@ use App\Models\Companies\Image;
 
 class CompaniesController extends Controller
 {
+    /**
+     * Create a new company in the system.
+     *
+     * @param string $slug
+     * @param App\Http\Requests\Companies\Update $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Update $request)
+    {
+        return DB::transaction(function() use ($request) {
+            $company = Company::create($request->all());
+            if ($request->hasFile('image')) {
+              $image = new Image();
+              $image->saveWithFile($request->image);
+              $image->save();
+              $company->image_id = $image->id;
+              $company->save();
+            }
+
+            Auth::user()->companies()->attach($company);
+
+            return response()->json([
+              'message' => 'Company Created.',
+              'company' => $company
+            ]);
+        });
+    }
+
     /**
      * Search for companies.
      *

@@ -51,6 +51,41 @@ const getters = {
 
 // Actions
 const actions = {
+  create({
+    state,
+    commit,
+    dispatch
+  }, company) {
+    var loader = 'update-company';
+    commit('addLoading', loader, {
+      root: true
+    });
+
+    var data = new FormData();
+    JSONToFormData(data, company);
+
+    return axios.post('/companies/', data)
+      .then(response => {
+        commit('setActive', response.data.company);
+        dispatch('finishAjaxCall', {
+          loader: loader,
+          response: response,
+          model: ERROR_MODEL
+        }, {
+          root: true
+        });
+      })
+      .catch(errors => {
+        dispatch('finishAjaxCall', {
+          loader: loader,
+          response: errors,
+          model: ERROR_MODEL
+        }, {
+          root: true
+        });
+      });
+  },
+
   search({
     commit,
     dispatch,
@@ -98,6 +133,9 @@ const actions = {
     commit,
     dispatch
   }, company) {
+    if (company.slug === null) {
+        return dispatch('create', company);
+    }
     var loader = 'update-company';
     commit('addLoading', loader, {
       root: true
@@ -138,7 +176,9 @@ const mutations = {
   },
 
   setActive(state, company) {
-    state.active = company;
+    Object.keys(state.active).forEach(k => {
+      state.active[k] = company[k];
+    });
   },
 
   setAll(state, companies) {

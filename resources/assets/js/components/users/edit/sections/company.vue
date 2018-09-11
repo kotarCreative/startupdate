@@ -89,21 +89,10 @@
 
     mixins: [ErrorMixins],
 
-    props: {
-      company: {
-        type: Object
-      }
-    },
-
-    mounted() {
-      Object.keys(this.form).forEach(k => {
-          this.form[k] = this.company[k];
-        });
-    },
-
     data: _ => ({
       errorModel: 'companies',
       form: {
+        slug: null,
         name: null,
         url: null,
         email: null,
@@ -118,6 +107,10 @@
     }),
 
     computed: {
+      company() {
+        return this.$store.getters['companies/active'];
+      },
+
       loading() {
         return this.$store.getters.hasLoading('update-company');
       },
@@ -142,6 +135,14 @@
 
       save() {
         this.$store.dispatch('companies/update', this.form);
+      }
+    },
+
+    watch: {
+      company(val) {
+        Object.keys(this.form).forEach(k => {
+          this.form[k] = val[k] || null;
+        });
       }
     }
   }

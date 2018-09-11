@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/profile/{slug}/edit', 'UsersController@edit')->name('users.edit');
   Route::patch('/profile/{slug}', 'UsersController@update')->name('users.update');
 
+  Route::post('/companies', 'CompaniesController@create')->name('companies.create');
   Route::patch('/companies/{slug}', 'CompaniesController@update')->name('companies.update');
 
   Route::patch('companies/{company}/progress/{progress_update}', 'ProgressUpdatesController@update')->name('progress.update');
