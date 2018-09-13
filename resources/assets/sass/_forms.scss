@@ -27,7 +27,7 @@
   color: #fff;
   border-radius: 0px;
   padding: 5px 30px;
-  border-color: $purple;
+  border: none;
 
   &:focus,
   &:hover,
@@ -46,6 +46,18 @@
     background: none;
     padding: 5px;
     color: $purple;
+  }
+
+  &-link {
+    color: $purple;
+    background: none;
+    padding: 5px;
+
+    &:hover {
+      color: darken($purple, 20%);
+      text-decoration: none;
+      background: none;
+    }
   }
 }
 

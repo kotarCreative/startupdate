@@ -7,7 +7,7 @@
       <li class="tab-item" :class="{active: selectedSection === 'company'}" @click="toggleSection('company')">
         Company
       </li>
-      <li class="tab-item" :class="{active: selectedSection === 'progress'}" @click="toggleSection('progress')">
+      <li v-if="company.slug" class="tab-item" :class="{active: selectedSection === 'progress'}" @click="toggleSection('progress')">
         Progress
       </li>
     </ul>

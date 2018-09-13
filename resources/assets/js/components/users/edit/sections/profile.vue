@@ -3,7 +3,7 @@
     <h2>Profile Info</h2>
     <div class="form-group">
       <label for="first-name" class="required-field">First Name</label>
-      <input type="text" class="form-control md" :class="{ 'has-error': hasError('current_password')}" name="first-name" v-model="form.first_name" :disabled="loading">
+      <input type="text" class="form-control md" :class="{ 'has-error': hasError('first_name')}" name="first-name" v-model="form.first_name" :disabled="loading">
     </div>
     <div class="form-group">
       <label for="last-name">Last Name</label>
@@ -11,8 +11,8 @@
     </div>
     <h2>Login Info</h2>
     <div class="form-group">
-      <label for="email">Login Email</label>
-      <input type="text" class="form-control md" name="email" v-model="form.email" :disabled="loading">
+      <label for="email" class="required-field">Login Email</label>
+      <input type="text" class="form-control md" :class="{ 'has-error': hasError('email')}" name="email" v-model="form.email" :disabled="loading">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
@@ -73,7 +73,7 @@
 
     computed: {
       loading() {
-        this.$store.getters.hasLoading('update-profile');
+        return this.$store.getters.hasLoading('update-profile');
       }
     },
 

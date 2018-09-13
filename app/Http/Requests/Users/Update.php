@@ -26,7 +26,7 @@ class Update extends FormRequest
     {
         return [
             'first_name' => 'required',
-            'email' => 'unique:users,email,' . Auth::user()->id,
+            'email' => 'required|unique:users,email,' . Auth::user()->id,
             'password' => 'confirmed',
             'current_password' => 'required'
         ];
