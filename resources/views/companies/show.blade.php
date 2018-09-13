@@ -46,10 +46,14 @@
     </div>
     <div class="row">
       <div class="col-12 company__progress-updates">
-        @foreach ($company->progressUpdates as $update)
-          <progress-update :update="{{ $update }}" :read-only="true"></progress-update>
-        @endforeach
+        @if ($company->progressUpdates->count() > 0)
+          @foreach ($company->progressUpdates as $update)
+            <progress-update :update="{{ $update }}" :read-only="true"></progress-update>
+          @endforeach
+        @else
+          <h4>No progress updates yet.</h4>
       </div>
+      @endif
     </div>
 </div>
 @endsection
