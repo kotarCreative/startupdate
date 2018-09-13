@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="progress-updates">
-      <progress-update v-for="(update, idx) in progressUpdates" :update="update" @edit="editUpdate" :key="'update-' + idx" :idx="idx"></progress-update>
+      <progress-update v-for="(update, idx) in progressUpdates" :update="update" @edit="editUpdate" :key="'update-' + idx"></progress-update>
     </div>
     <add-progress-modal></add-progress-modal>
     <edit-progress-modal :progress-update="activeUpdate"></edit-progress-modal>

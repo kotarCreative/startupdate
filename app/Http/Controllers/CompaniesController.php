@@ -86,7 +86,7 @@ class CompaniesController extends Controller
             }
         }
 
-        $companies = $query->paginate(20);
+        $companies = $query->orderBy('name', 'asc')->paginate(20);
 
         foreach ($companies as $company) {
             $company->vertical;
@@ -110,6 +110,10 @@ class CompaniesController extends Controller
         $company->vertical;
         $company->progressType;
         $company->attachImage();
+
+        foreach ($company->progressUpdates as $update) {
+          $update->attachMetric();
+        }
 
         return view('companies/show', compact('company'));
     }

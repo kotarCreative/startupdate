@@ -11,6 +11,7 @@ Vue.component('loader', require(general + 'loader.vue'));
 // Users
 const users = './components/users/';
 Vue.component('edit-user-profile', require(users + 'edit/index.vue'));
+Vue.component('progress-update', require(users + 'edit/partials/progress'));
 
 // FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'

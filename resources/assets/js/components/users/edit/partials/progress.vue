@@ -2,7 +2,7 @@
   <div class="progress-update">
     <div class="progress-update__title">
       <h4>{{ new Date(update.created_at).format('m d, Y') }}</h4>
-      <button class="btn text" @click="edit">
+      <button v-if="!readOnly" class="btn text" @click="edit">
         <font-awesome-icon :icon="['far', 'edit']"></font-awesome-icon>
         Edit
       </button>
@@ -40,9 +40,9 @@
     name: 'progress-update',
 
     props: {
-      idx: {
-        type: Number,
-        required: true
+      readOnly: {
+        type: Boolean,
+        default: false
       },
 
       update: {
