@@ -38,6 +38,8 @@ class CompaniesController extends Controller
 
             Auth::user()->companies()->attach($company);
 
+            $company->attachImage();
+
             return response()->json([
               'message' => 'Company Created.',
               'company' => $company

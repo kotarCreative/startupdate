@@ -2,7 +2,7 @@
   <div id="edit-company-section">
     <h2>Edit Company</h2>
     <div class="form-group">
-      <photo-uploader @photoUploaded="updateCompanyPhoto" :starting-image="company.image" @removePhoto="removePhoto"></photo-uploader>
+      <photo-uploader @photoUploaded="updateCompanyPhoto" :starting-image="form.image" @removePhoto="removePhoto"></photo-uploader>
     </div>
     <div class="form-group">
       <label for="name" class="required-field">Company Name</label>
@@ -48,7 +48,7 @@
       <label for="progress-type" class="required-field">Which of the following best describes your progress?</label>
       <select name="progress-type"
               class="form-control md"
-              :class="{ 'has-error': hasError('progress_type_id')}"
+              :class="{ 'has-error': hasError('company_progress_type_id')}"
               v-model="form.company_progress_type_id"
               :disabled="loading">
         <option :value="null">Select...</option>
@@ -139,10 +139,13 @@
     },
 
     watch: {
-      company(val) {
-        Object.keys(this.form).forEach(k => {
-          this.form[k] = val[k] || null;
-        });
+      company: {
+        handler(val) {
+          Object.keys(this.form).forEach(k => {
+            this.form[k] = typeof val[k] !== 'undefined' ? val[k] : null;
+          });
+        },
+        deep: true
       }
     }
   }

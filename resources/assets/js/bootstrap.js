@@ -17,3 +17,20 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+/**
+ * Redirects the current page to the given url.
+ *
+ * @param string url
+ *
+ * @return void
+ */
+function redirectTo(url, newTab) {
+    if (newTab) {
+        window.open('http://' + window.location.hostname + url, '_blank');
+    } else {
+        window.location.href = 'http://' +
+        window.location.hostname +
+        url;
+    }
+}

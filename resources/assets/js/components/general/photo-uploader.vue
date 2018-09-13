@@ -21,7 +21,7 @@
 
         props: {
             startingImage: {
-                type: String
+                type: [String, File]
             }
         },
 
@@ -63,6 +63,12 @@
                 this.$emit('photoUploaded', this.file);
             }
         },
+
+        watch: {
+          startingImage(val) {
+            this.renderedImage = val;
+          }
+        }
     }
 </script>
 

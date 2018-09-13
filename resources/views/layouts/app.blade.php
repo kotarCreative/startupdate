@@ -45,9 +45,6 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('feedback') }}">{{ __('Feedback') }}</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Sign In') }}</a>
                             </li>
                             <li class="nav-item">

@@ -10,7 +10,8 @@ const ERROR_MODEL = 'companies';
 const COMPANY = {
   id: null,
   vertical_id: null,
-  progress_type_id: null,
+  image: null,
+  company_progress_type_id: null,
   slug: null,
   name: null,
   email: null,
@@ -66,7 +67,7 @@ const actions = {
 
     return axios.post('/companies/', data)
       .then(response => {
-        commit('setActive', response.data.company);
+        window.location.reload();
         dispatch('finishAjaxCall', {
           loader: loader,
           response: response,

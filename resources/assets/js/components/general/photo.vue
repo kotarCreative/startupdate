@@ -90,7 +90,7 @@
         flex:               1
         position:           relative
         background:         #fff
-        border:             solid 5px var(--purple)
+        border:             solid 5px #665C90
         border-radius:      $border-radius
         cursor:             pointer
         background-repeat:  no-repeat

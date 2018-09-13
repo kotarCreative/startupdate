@@ -25,6 +25,9 @@
         </td>
         <td width="300px">
             <div class="company__labels">
+                <div v-if="company.from_startup_school" class="company__label">
+                  SUS
+                </div>
                 <div class="company__label">
                     {{ company.vertical.name }}
                 </div>
