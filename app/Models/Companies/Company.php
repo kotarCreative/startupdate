@@ -76,7 +76,7 @@ class Company extends Model
      */
     public function progressUpdates()
     {
-      return $this->hasMany('App\Models\Companies\Progress\Update');
+      return $this->hasMany('App\Models\Companies\Progress\Update')->orderBy('created_at', 'desc');
     }
 
     /**

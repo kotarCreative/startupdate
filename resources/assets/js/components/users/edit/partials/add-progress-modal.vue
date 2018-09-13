@@ -69,7 +69,7 @@
 
     computed: {
       loading() {
-        return this.$store.getters.hasLoading('create-progress-update');
+        return this.$store.getters.hasLoading('add-progress-update');
       },
 
       metrics() {

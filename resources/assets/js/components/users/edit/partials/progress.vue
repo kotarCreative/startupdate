@@ -1,7 +1,7 @@
 <template>
   <div class="progress-update">
     <div class="progress-update__title">
-      <h4>Update &#35;{{ idx + 1 }}</h4>
+      <h4>{{ new Date(update.created_at).format('m d, Y') }}</h4>
       <button class="btn text" @click="edit">
         <font-awesome-icon :icon="['far', 'edit']"></font-awesome-icon>
         Edit
