@@ -35,36 +35,45 @@
     </div>
     <div class="form-group">
       <label for="vertical" class="required-field">Vertical</label>
-      <select name="vertical"
-              class="form-control md"
-              :class="{ 'has-error': hasError('vertical_id')}"
-              v-model="form.vertical_id"
-              :disabled="loading">
-        <option :value="null">Select...</option>
-        <option v-for="option in verticals" :value="option.id">{{ option.name }}</option>
-      </select>
+      <div class="select-wrapper md">
+        <select name="vertical"
+                class="form-control md"
+                :class="{ 'has-error': hasError('vertical_id')}"
+                v-model="form.vertical_id"
+                :disabled="loading">
+          <option :value="null">Select...</option>
+          <option v-for="option in verticals" :value="option.id">{{ option.name }}</option>
+        </select>
+        <font-awesome-icon icon="sort-down"></font-awesome-icon>
+      </div>
     </div>
     <div class="form-group">
       <label for="progress-type" class="required-field">Which of the following best describes your progress?</label>
-      <select name="progress-type"
-              class="form-control md"
-              :class="{ 'has-error': hasError('company_progress_type_id')}"
-              v-model="form.company_progress_type_id"
-              :disabled="loading">
-        <option :value="null">Select...</option>
-        <option v-for="option in progressTypes" :value="option.id">{{ option.name }}</option>
-      </select>
+      <div class="select-wrapper md">
+        <select name="progress-type"
+                class="form-control md"
+                :class="{ 'has-error': hasError('company_progress_type_id')}"
+                v-model="form.company_progress_type_id"
+                :disabled="loading">
+          <option :value="null">Select...</option>
+          <option v-for="option in progressTypes" :value="option.id">{{ option.name }}</option>
+        </select>
+        <font-awesome-icon icon="sort-down"></font-awesome-icon>
+      </div>
     </div>
     <div class="form-group">
       <label for="from-startup-school" class="required-field">Are you currently attending Y Combinator's Startup School?</label>
-      <select name="from-startup-school"
+      <div class="select-wrapper md">
+        <select name="from-startup-school"
               class="form-control md"
               :class="{ 'has-error': hasError('from_startup_school')}"
               v-model="form.from_startup_school"
               :disabled="loading">
-        <option :value="0">No</option>
-        <option :value="1">Yes</option>
-      </select>
+          <option :value="0">No</option>
+          <option :value="1">Yes</option>
+        </select>
+        <font-awesome-icon icon="sort-down"></font-awesome-icon>
+      </div>
     </div>
     <div class="form-errors" v-if="hasErrors()">
         <sup>*</sup>Please fill in required fields.

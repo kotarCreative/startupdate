@@ -5,6 +5,8 @@
   display: flex;
 
   .tab-item {
+    display: flex;
+    align-items: center;
     border: solid thin $light-grey;
     padding: 5px 80px;
     margin-right: -1px;

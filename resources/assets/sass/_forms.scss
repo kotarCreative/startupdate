@@ -22,6 +22,24 @@
   }
 }
 
+.select-wrapper {
+  position: relative;
+
+  &.sm {
+    max-width: 300px;
+  }
+
+  &.md {
+    max-width: 500px;
+  }
+
+  svg {
+    position: absolute;
+    right: 13px;
+    top: 8px;
+  }
+}
+
 .btn {
   background: $purple;
   color: #fff;

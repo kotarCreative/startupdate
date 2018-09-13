@@ -17,10 +17,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit } from '@fortawesome/free-regular-svg-icons'
 import { faUserCircle } from '@fortawesome/free-regular-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons'
+import { faSortDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faEdit);
 library.add(faUserCircle);
 library.add(faLink);
+library.add(faSortDown);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

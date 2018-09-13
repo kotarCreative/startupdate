@@ -5,14 +5,17 @@
       <div class="row">
         <div class="col-md-4">
           <label for="metric" class="required-field">Metric</label>
-          <select name="metric"
-                  class="form-control"
-                  :class="{ 'has-error': hasError('progress_metric_id')}"
-                  v-model="form.progress_metric_id"
-                  :disabled="loading">
-            <option :value="null">Select...</option>
-            <option v-for="option in metrics" :value="option.id">{{ option.name }}</option>
-          </select>
+          <div class="select-wrapper md">
+            <select name="metric"
+                    class="form-control"
+                    :class="{ 'has-error': hasError('progress_metric_id')}"
+                    v-model="form.progress_metric_id"
+                    :disabled="loading">
+              <option :value="null">Select...</option>
+              <option v-for="option in metrics" :value="option.id">{{ option.name }}</option>
+            </select>
+            <font-awesome-icon icon="sort-down"></font-awesome-icon>
+          </div>
         </div>
         <div class="col-md-4">
           <label for="value" class="required-field">Value</label>
