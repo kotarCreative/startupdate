@@ -148,6 +148,7 @@ class CompaniesController extends Controller
           }
         }
 
+        $company->save();
         return response()->json([
           'message' => 'Company Updated',
           'company' => $company
